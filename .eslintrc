@@ -1,0 +1,74 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "spaced-comment": ["warn", "always"],
+    "quotes": [1, "single", {"avoidEscape": true}],
+    "eol-last": [0],
+    "no-mixed-requires": [0],
+    "no-underscore-dangle": [0],
+    "semi": [1, "never"],
+    "dot-location": [1, "property"],
+    "jsx-quotes": [1, "prefer-double"],
+    "no-undef": ["error"],
+    "no-unused-vars": ["warn"],
+    "space-infix-ops": "warn",
+    "indent": ["warn", 2, {"SwitchCase": 1}],
+    "no-console": ["warn", { allow: ["warn", "error", "log"] }]
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended"
+}
+
+# {
+#   "ecmaFeatures": {
+#     "jsx": true,
+#     "modules": true
+#   },
+#
+#   // I want to use babel-eslint for parsing!
+#   "parser": "babel-eslint",
+#   "env": {
+#     // I write for browser
+#     "browser": true,
+#     // in CommonJS
+#     "node": true
+#   },
+#
+#   // To give you an idea how to override rule options:
+#   "rules": {
+#     "react/jsx-uses-react": 2,
+#     "react/jsx-uses-vars": 2,
+#     "react/react-in-jsx-scope": 2,
+#     "react/jsx-no-undef": "error",
+#     "react/jsx-tag-spacing": ["warn"],
+#
+#     "flowtype/define-flow-type": ["warn"],
+#
+#     "spaced-comment": ["warn", "always"],
+#     "quotes": [1, "single", {"avoidEscape": true}],
+#     "eol-last": [0],
+#     "no-mixed-requires": [0],
+#     "no-underscore-dangle": [0],
+#     "semi": [1, "never"],
+#     "dot-location": [1, "property"],
+#     "jsx-quotes": [1, "prefer-double"],
+#     "no-undef": ["error"],
+#     "no-unused-vars": ["warn"],
+#     "space-infix-ops": "warn",
+#     "indent": ["warn", 2],
+#   },
+#
+#   "plugins": [
+#     "react",
+#     "flowtype"
+#   ],
+#
+#   globals: {
+#     "Promise": false
+#   }
+#
+# }
