@@ -33,3 +33,21 @@ const server = app.listen(process.env.PORT || 5000, () => {
   console.log('App now running on port', port)
   addDataToDb()
 })
+
+// --- handle command from console ---
+// http://stackoverflow.com/questions/10428684/how-to-implement-console-commands-while-server-is-running-in-node-js
+const done = () => {
+  console.log('Now that process.stdin is paused, there is nothing more to do.')
+  process.exit()
+}
+
+const handleConsoleCmd = (cmdInput) => {
+  const cmdArray = cmdInput.trim().split(' ')
+  console.log('handleConsoleCmd: cmdArray = ', cmdArray)
+
+  if (cmdInput.trim() === 'quit') done()
+}
+
+process.stdin.resume()
+process.stdin.setEncoding('utf8')
+process.stdin.on('data', handleConsoleCmd)
