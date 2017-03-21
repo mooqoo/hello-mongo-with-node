@@ -1,7 +1,14 @@
 import express from 'express'
 import mongoose from 'mongoose'
 
-import {createAndSaveUser} from './db/update/User'
+import {
+  createAndSaveUser,
+  showAll,
+  findByName,
+  findAndCreate,
+} from './db/crud/User'
+
+import echo from './db/crud/EchoMap'
 
 const app = express()
 
@@ -21,10 +28,23 @@ mongoose.connect(dbUri, (err, res) => {
 
 const addDataToDb = () => {
   console.log('run addDataToDb method...')
+  // showAll()
 
-  // createAndSaveUser('Alex', true)
-  // createAndSaveUser('Wilson', false)
+  // findByName('Alex')
   // createAndSaveUser('Victor', true)
+  // createAndSaveUser('Jenny', false)
+
+  // create echo
+  // echo.create('a', 'this is a echo')
+  // echo.create('b', 'this is b another echo', null, 'groudId')
+  // echo.create('b', 'this is b another echo @@@', null, 'groudId')
+  // echo.create('b', 'this is b global echo ###',)
+  // echo.create('c', 'hello group echo', null, 'groudId')
+  // echo.showAll()
+
+  // echo.findEchoMapByGroupId('groudId')
+  // echo.findEchoMapByGroupId(null)
+  // echo.findEchoValue('groudId', 'b')
 }
 
 // 因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
