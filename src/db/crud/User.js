@@ -15,7 +15,7 @@ const dudify = (user) => user.dudify((err, name) => {
 })
 
 const save = (user) => user.save((err) => {
-  if (err) return console.log('user already exist')// throw err;
+  if (err) return console.log('user already exist') // throw err
   console.log('User saved successfully!')
 })
 
