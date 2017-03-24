@@ -5,8 +5,14 @@ const Schema = mongoose.Schema
 // http://mongoosejs.com/docs/guide.html#indexes
 // create compound index for groupId with triggerType
 const userSourceSchema = new Schema({
-  sourceType: { type: string, required: true}
-  sourceId: { type: string, required: true, unique: true }
+  sourceType: { type: String, required: true},
+  sourceId: { type: String, required: true, unique: true },
+  enabledCmd: {
+    echo: { type: Boolean, default: true },
+    currency: { type: Boolean, default: true },
+    movie: { type: Boolean, default: true },
+  },
+
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 })

@@ -1,4 +1,5 @@
 
+import {Observable} from 'rxjs'
 import UserSource from '../schema/UserSource'
 
 const SourceType = {
@@ -33,17 +34,44 @@ const showAll = () => {
 }
 
 // --- query ---
+const getUserSourceInfo$ = (sourceType, sourceId) => Observable.create(observer => (
+  UserSource.findOne(
+    { sourceType: sourceType, sourceId: sourceId },
+    (error, source) => {
+      if (error) {
+        console.error('getUserSourceInfo$: error = ', error)
+        throw error
+        // console.log('getUserSourceInfo$: create a new userSource')
+        // const newUserSource = createUserSource(sourceType, sourceId)
+        // console.log('getUserSourceInfo$: newUserSource = ', newUserSource)
+        // observer.next(newUserSource)
+        // return
+      }
+      if (!source) {
+        console.log('getUserSourceInfo$: create a new userSource')
+        const newUserSource = createUserSource(sourceType, sourceId)
+        console.log('getUserSourceInfo$: newUserSource = ', newUserSource)
+        observer.next(newUserSource)
+        return
+      }
+      console.log('getUserSourceInfo$: userSource found! userSource = ', source)
+      observer.next(source)
+
+    }
+  )
+))
 
 // --- create ---
 const create = (sourceType, sourceId) => {
   // check if it this new
   console.log('UserSource: create... sourceType=' + sourceType + ', sourceId=' + sourceId)
-  const sourceType = createUserSource(sourceType, sourceId)
-  save(sourceType)
+  const userSource = createUserSource(sourceType, sourceId)
+  save(userSource)
   console.log('UserSource: create done...')
 }
 
 export default {
   create,
   showAll,
+  getUserSourceInfo$,
 }

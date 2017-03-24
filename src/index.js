@@ -1,5 +1,6 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import rxjs from 'rxjs'
 
 import {
   createAndSaveUser,
@@ -9,6 +10,7 @@ import {
 } from './db/crud/User'
 
 import echo from './db/crud/EchoMap'
+import userSource from './db/crud/UserSource'
 
 const app = express()
 
@@ -26,8 +28,18 @@ mongoose.connect(dbUri, (err, res) => {
   }
 })
 
+// 1.) load data from db
+// 2.) process cmd
+// 3.) handle action...
 const addDataToDb = () => {
   console.log('run addDataToDb method...')
+
+  const userSource$ = userSource.getUserSourceInfo$('group', 'b12345678')
+  const userSourceCmd$ = userSource$.map(userSource => userSource.enabledCmd)
+  userSourceCmd$.subscribe(enabledCmd => {
+    console.log('enabledCmd = ', enabledCmd)
+  })
+
   // showAll()
 
   // findByName('Alex')
